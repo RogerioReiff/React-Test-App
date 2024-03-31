@@ -1,46 +1,67 @@
 import React, {useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, FlatList} from 'react-native';
+import { StyleSheet, Text, View, FlatList, Alert} from 'react-native';
 import Header from './components/Header'
 import TodoItem from './components/TodoItem'
 import AddTodo from './components/AddTodo'
 
 export default function App() {
+
   const [todos, setTodos] = useState([
     {text: 'buy coffe', key: '1'},
     {text: 'create an app', key: '2'},
     {text: 'play on the switch', key: '3'}
-  ]);
+  ]);//list on the Todo
 
   const pressHandler = (key) => {
     setTodos((prevTodos) => {
       return prevTodos.filter(todo => todo.key != key);
     });
-  }
+  }//press the todo, then it gets deleted if it exists on the list.
 
   const submitHandler = (text) => {
-    setTodos((prevTodos) =>{
-      return [
-        { text: text, key: Math.random().toString() },
-        ...prevTodos
-      ]
-    })
+    if(text.length > 3){
+
+      setTodos((prevTodos) =>{
+
+        return [
+          { text: text, key: Math.random().toString() },
+          ...prevTodos // use ... to copy elements of an old array to a new one
+        ];
+      });//submit to the list
+
+    }else{
+      Alert.alert('OOPS!', 'Todos must be over three characters long.',[
+        {text: 'Understood', onPress: () => console.log('alert closed')}
+      ]) // first title, than message on the alert and finally the button.
+    }
+
+    
   }
 
   return (
+
     <View style={styles.container}>
-      <Header/>
+
+      <Header/>  
+
       <View style={styles.content}>
+
         <AddTodo submitHandler={submitHandler} />  
+
         <View style={styles.list}>
+
           <FlatList 
           data={todos}
           renderItem={({item}) => (
             <TodoItem item={item} pressHandler={pressHandler} />
           )}
-          />
+          /> 
+
         </View>   
+
       </View>
+
     </View>
   );
 }
