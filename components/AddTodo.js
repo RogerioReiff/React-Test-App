@@ -15,7 +15,7 @@ export default function AddTodo({submitHandler}) {
        <View>
 
         <TextInput style={styles.Input}
-         placeholder='new todo...'
+         placeholder='NEW TODO...'
          onChangeText={changeHandler}
         />
 

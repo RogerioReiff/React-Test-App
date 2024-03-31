@@ -15,11 +15,12 @@ export default function App() {
   ]);//list on the Todo
 
   const pressHandler = (key) => {
-    //TODO: On press either delete or edit text
     setTodos((prevTodos) => {
       return prevTodos.filter(todo => todo.key != key);
     });
   }//press the todo, then it gets deleted if it exists on the list.
+
+  //TODO PRESSHANDLER TO EDIT TEXT
 
   const submitHandler = (text) => {
     if(text.length > 3){
