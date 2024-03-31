@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, FlatList, Alert, TouchableWithoutFeedback, Keyb
 import Header from './components/Header'
 import TodoItem from './components/TodoItem'
 import AddTodo from './components/AddTodo'
+import Sandbox from './components/sandbox';
 
 export default function App() {
 
@@ -14,6 +15,7 @@ export default function App() {
   ]);//list on the Todo
 
   const pressHandler = (key) => {
+    //TODO: On press either delete or edit text
     setTodos((prevTodos) => {
       return prevTodos.filter(todo => todo.key != key);
     });
@@ -31,7 +33,8 @@ export default function App() {
       });//submit to the list
 
     }else{
-      Alert.alert('OOPS!', 'Todos must be over three characters long.',[
+      Alert.alert('OOPS!', 'Todos must be over three characters long.',
+      [
         {text: 'Understood', onPress: () => console.log('alert closed')}
       ]) // first title, than message on the alert and finally the button.
     }
@@ -40,7 +43,7 @@ export default function App() {
   }
 
   return (
-
+    //<Sandbox />
     <TouchableWithoutFeedback onPress={() => {
       Keyboard.dismiss();
       console.log('dismissed keyboard');
@@ -80,8 +83,10 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 40,
+    flex: 1,
   },
   list: {
+    flex: 1,
     marginTop: 20,
   }
 });
