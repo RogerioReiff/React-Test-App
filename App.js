@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Home from './screens/home';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import { NavigationContainer } from '@react-navigation/native';
 
 
 export default function App() {
@@ -16,8 +17,9 @@ export default function App() {
     <AppLoading />
   } 
   return (
-
-    <Home />
+    <NavigationContainer>
+      <Home />
+    </NavigationContainer>
 
   );
 } 
