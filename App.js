@@ -24,8 +24,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name='Home' component={Home} />
-        <Stack.Screen name='ReviewDetails' component={ReviewDetail} />
+        <Stack.Screen name='Home' component={Home} options={{title: 'GameZone', headerStyle: {backgroundColor: '#eee', height: 60}}}/>
+        <Stack.Screen name='ReviewDetails' component={ReviewDetail} options={{title: 'Review Details', headerStyle: {backgroundColor: '#eee', height: 60}}}/>
       </Stack.Navigator>
     </NavigationContainer>
 
