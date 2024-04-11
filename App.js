@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Root from './screens/root';
 import About from './screens/about';
 import ReviewDetail from './screens/reviewDetail';
+import Header from './shared/header';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -26,9 +27,9 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Root'>
           <Stack.Group screenOptions={{headerStyle:{backgroundColor: '#eee', height: 60}}}>
-              <Stack.Screen name='Root' component={Root} options={{title: 'BroZone'}}/>
-              <Stack.Screen name='ReviewDetails' component={ReviewDetail} options={{title: 'Review Details'}}/>
-              <Stack.Screen name='aboutStack' component={About} options={{title: 'About BroZone'}}/> 
+              <Stack.Screen name='Root' component={Root} options={({navigation})=> {return{header:()=> <Header title='BroZone' navigation={navigation}/>}}}/>
+              <Stack.Screen name='ReviewDetails' component={ReviewDetail} options={{title:'Review Details'}}/>
+              <Stack.Screen name='aboutStack' component={About} options={({navigation})=> {return{header:()=> <Header title='BroZone' navigation={navigation}/>}}}/> 
           </Stack.Group>    
       </Stack.Navigator>
     </NavigationContainer>
