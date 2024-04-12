@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Text, View, FlatList, TouchableOpacity } from 'react-native';
+import { Text, View, FlatList, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 import { globalStyles } from '../styles/global';
 import Card from '../shared/card';
+import {MaterialIcons} from '@expo/vector-icons';
 
 export default function Home( {navigation} ){
 
@@ -11,8 +12,20 @@ export default function Home( {navigation} ){
         {title: 'Not So "Final" Fantasy', rating: 3, body: 'lorem ipsum', key: 3},
     ]);
 
+    const [modalOpen,setModalOpen] = useState(false);
+
     return(
         <View style={globalStyles.container}>
+
+            <Modal visible={modalOpen} animationType='slide'>
+                <View style={styles.modalContent}>
+                    <MaterialIcons name='close' size={24} style={{...styles.modalToggle, ...styles.modalClose}} onPress={()=> setModalOpen(false)} />
+                    <Text>Hello From Modal!</Text>
+                </View>
+            </Modal>
+
+            <MaterialIcons name='add' size={24} style={styles.modalToggle} onPress={()=> setModalOpen(true)} />
+
             <FlatList 
                 data={reviews}
                 renderItem={({ item }) => (
@@ -25,4 +38,22 @@ export default function Home( {navigation} ){
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    modalToggle:{
+        marginBottom: 10,
+        borderWidth: 1,
+        borderColor: '#f2f2f2',
+        padding: 10,
+        borderRadius: 10,
+        alignSelf: 'center'
+    },
+    modalClose:{
+        marginTop: 20,
+        marginBottom: 0,
+    },
+    modalContent:{
+        flex:1,
+    }
+});
 
